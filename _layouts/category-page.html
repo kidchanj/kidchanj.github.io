@@ -2,6 +2,7 @@
 layout: home
 ---
 {% include header.html %}
+<h3>📚 <b>About {{ page.title }}</b></h3>
 <div class="c-posts o-opacity">
   {% for post in site.categories[page.title] %}
   <article class="c-post">
