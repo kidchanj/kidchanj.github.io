@@ -4,7 +4,7 @@
     = cats | split: ' ' | sort %} {% for category in sortedCats %}
     <li class="c-categories__item">
       {% assign cat_dir = site.category_dir | default: 'category' %}
-      <a class="c-categories__link" href="{{ site.url }}/{{ cat_dir }}/{{ category | downcase | slugify }}/">
+      <a class="c-categories__link" href="https://{{ site.url }}/{{ cat_dir }}/{{ category | downcase | slugify }}/">
         {% for post in site.categories[category] limit: 1 %}
         {% assign empty-figure = nil %}
         {% if post.image %}
