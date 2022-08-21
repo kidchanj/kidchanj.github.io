@@ -6,13 +6,15 @@ layout: home
     <header class="c-header u-hide u-no-margin-top">
       <style>
         table td {
+          background-color: rgb(255, 255, 255);
           vertical-align: center;
           border-bottom: 1px solid #ccc;
-            }
+        }
         table {
-        margin-left:auto; 
-        margin-right:auto;
-      }
+          background-color: #ccc;
+          margin-left:auto; 
+          margin-right:auto;
+        }
         img {
           display:block;
           margin:auto;
@@ -35,7 +37,8 @@ layout: home
     {% endif %}
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">{{page.title}}</h1>
+        <h1 class="c-article__title"><b>{{page.title}}</b></h1>
+        <h6 class="c-article__description">{{page.description}}</h6>
         <div class="c-article__date">
           <span>{{page.date | date: '%Y, %b %d'}}</span>
         </div>
@@ -47,18 +50,17 @@ layout: home
           <a href="{{site.baseurl}}/tags#{{tag}}">&#35; {{ tag }}</a>
           {% endfor %}
         </div>
-        <div>
-          <script src="https://utteranc.es/client.js"
+      </div>
+      <div>
+        <script src="https://utteranc.es/client.js"
         repo="kidchanj/kidchanj.github.io"
         issue-term="url"
         label="💬"
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script>
-        </div>
+        </script>
       </div>
-
       <div class="c-recent-post">
         <h4 class="c-recent__title">📃최근 게시글</h4>
         <div class="c-recent__box">
@@ -78,9 +80,6 @@ layout: home
         {% endfor %}
         </div>
       </div> <!-- /.c-recent-post -->
-      {% if site.disqus-identifier %}
-        {% include disqus-comments.html %}
-      {% endif %}
     </div> <!-- /.c-wrap-content -->
   </div> <!-- /.c-article__content -->
 </article> <!-- /.c-article-page -->
