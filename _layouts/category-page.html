@@ -8,11 +8,11 @@ layout: home
   <article class="c-post">
     {% if post.image %}
     <a class="c-post-thumbnail" style="background-image: url({{"/images/" | prepend: site.url | append : post.image}})"
-      href="https://kidchanj.github.io{{post.url}}"></a>
+      href="{{post.url | prepend: site.url}}"></a>
     {% else %} {% endif %}
     <div class="c-post-content">
       <h2 class="c-post-title">
-        <a href="https://kidchanj.github.io{{post.url}}">{{post.title}}</a>
+        <a href="{{post.url | prepend: site.url}}">{{post.title}}</a>
       </h2>
       <p>{{ post.content | strip_html | truncatewords: 15 }}</p>
       <span class="c-post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
