@@ -32,3 +32,4 @@ categories: [Network]
 |:-----:|----|
 |&emsp;7계층 Application&emsp;<br>(응용 계층)|&emsp;사용자 인터페이스 계층으로 사용자의 명령을 받아주는 계층(응용 프로그램)&emsp;|
 |6계층 Presentation<br>(표현 계층)| 상위계층에서 만들어진 데이터의 형태 표현 인코딩, 압축, 암호화 등에 대한 정보|
+

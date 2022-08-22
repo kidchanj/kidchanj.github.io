@@ -18,6 +18,7 @@ module Jekyll
     safe true
 
     def generate(site)
+      urlname = "kidchanj.github.io"
       if site.layouts.key? 'category-page'
         dir = site.config['category_dir'] || 'category'
         site.categories.each_key do |category|
