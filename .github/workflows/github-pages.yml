@@ -1,7 +1,9 @@
-name: Jekyll CI
+name: Build and deploy
 
 on:
-  push
+  push:
+    branches:
+      -main
 
 jobs:
   jekyll:
