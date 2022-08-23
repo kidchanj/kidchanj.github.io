@@ -20,5 +20,5 @@ jobs:
     # Standard usage
     - uses:  helaili/jekyll-action@2.3.0
       with:
-        target_branch: 'main'
+        target_branch: 'gh-pages'
         token: ${{ secrets.JEKYLL_PAT }}
