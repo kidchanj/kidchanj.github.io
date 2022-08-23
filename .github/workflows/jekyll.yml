@@ -18,7 +18,7 @@ jobs:
           ${{ runner.os }}-gems-
 
     # Standard usage
-    - uses:  helaili/jekyll-action@2.3.0
+    - uses:  helaili/jekyll-action@2.0.3
       with:
         target_branch: 'main'
       env:
