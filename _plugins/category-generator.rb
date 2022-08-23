@@ -1,19 +1,5 @@
 module Jekyll
 
-  class CategoryPage < Page
-    def initialize(site, base, dir, category)
-      @site = site
-      @base = base
-      @dir = dir
-      @name = 'index.html'
-
-      self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'category-page.html')
-      self.data['category'] = category
-      self.data['title'] = category
-    end
-  end
-
   class CategoryPageGenerator < Generator
     safe true
 
@@ -29,4 +15,18 @@ module Jekyll
     end
   end
 
+    class CategoryPage < Page
+    def initialize(site, base, dir, category)
+      @site = site
+      @base = base
+      @dir = dir
+      @name = 'index.html'
+
+      self.process(@name)
+      self.read_yaml(File.join(base, '_layouts'), 'category-page.html')
+      self.data['category'] = category
+      self.data['title'] = category
+    end
+  end
+  
 end
