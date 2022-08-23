@@ -20,6 +20,6 @@ jobs:
     # Standard usage
     - uses:  helaili/jekyll-action@2.0.3
       with:
-        ref: 'main'
+        target_branch: 'main'
       env:
         JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
