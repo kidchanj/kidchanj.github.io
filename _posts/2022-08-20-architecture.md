@@ -19,3 +19,6 @@ categories: [Architecture]
 ---
 
 ## 예제
+# {{ site }}
+# {{ site.source }}
+# {{ post.url }}
