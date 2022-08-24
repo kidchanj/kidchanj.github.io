@@ -2,7 +2,7 @@
 layout: post
 title: Architecture
 description: post 예제 업로드
-# image: 7layer.jpg
+image: 7layer.jpg
 date: 2022-08-22 15:08:00 +0900
 tags: architecture
 categories: [Architecture]
@@ -19,3 +19,4 @@ categories: [Architecture]
 ---
 
 # 테스트 페이지 입니다:)
+## 테스트 페이지 입니다:)
