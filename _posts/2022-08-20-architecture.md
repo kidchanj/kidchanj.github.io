@@ -18,7 +18,4 @@ categories: [Architecture]
 </details>
 ---
 
-## 예제
-# {{ site }}
-# {{ site.source }}
-# {{ post.url }}
+# 이제 정말 포스팅을 시작해도 될까,,,,
