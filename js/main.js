@@ -11,7 +11,7 @@ $(document).ready(function () {
     resultsContainer: document.getElementById('js-results-container'),
     json: '/search.json',
     searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
-    noResultsText: '<li>No results found</li>'
+    noResultsText: '<li> 검색된 결과가 없습니다 😥</li>'
   })
 
   /* =======================
