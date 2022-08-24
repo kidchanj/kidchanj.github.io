@@ -3,3 +3,5 @@
 .editorconfig
 *.DS_Store
 _site
+sitemap.xml
+*architecture*
