@@ -61,5 +61,3 @@ categories: [HackingCamp]
 <img src = "/images/group_photo.jpg" width="900px" height="600px">
 <h4 align="center"><b>고생해주신 POC 관계자분들, 발표자분들, DEMON팀, SISS팀 너무 감사하고 고생 많으셨습니다!</b>🎊</h4>
 <br>
-
-<h6 align="right">마지막으로 이 캠프를 추천해준 사촌형님께 무한한 감사를...ㅎ</h6>
