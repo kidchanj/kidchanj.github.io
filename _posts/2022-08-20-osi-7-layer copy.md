@@ -53,7 +53,8 @@ categories: [Network]
 
 ### **3) Encapsulation & De-capsulation**
 <div style="margin-left:3%;margin-right:3%;">
-<p><h5 align="left"> 위에서 설명했듯 장비 간 Data를 주고 받을때 각 계층의 header 정보가 담기는데 실제 통신 과정에선 End device <br>사이에 수많은 장비들이 존재하고 필요로 하는 Data의 header정보의 범위가 다릅니다. 때문에 Data를 송,수신 하는 과정에서 header정보가 중구난방으로 입력돼 있다면 Data를 해석하기 위해서는 시간과 장비에서 필요로하는 성능이 올라가게 됩니다. 굉장히 비효율 적이죠, 때문에 Date를 보내거나 받을때 처리하는 과정과 절차가 있는데 이를 <b>Encasulation(송신)</b>, <b>De-encapsulation(수신)</b> 이라고 합니다.
+<p><h5 align="left"> 위에서 설명했듯 장비 간 Data를 주고 받을때 각 계층의 header 정보가 담기는데 실제 통신 과정에선 End device <br>사이에 수많은 장비들이 존재하고 필요로 하는 Data의 header정보의 범위가 다릅니다. 때문에 Data를 송,수신 하는 과정에서 header정보가 중구난방으로 입력돼 있다면 Data를 해석하기 위해서는 시간과 장비에서 필요로하는 성능이 올라가게 됩니다. 굉장히 비효율 적이죠, 때문에 Data를 보내거나 받을때 처리하는 과정과 절차가 있는데 이를 <b>Encapsulation(송신)</b>, <b>De-encapsulation(수신)</b> 이라고 합니다.
 </h5></p>
 </div>
 <br>
+<h5 align="center"> 작성중...</h5>
