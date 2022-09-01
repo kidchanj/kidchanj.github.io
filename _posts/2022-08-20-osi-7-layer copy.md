@@ -5,7 +5,7 @@ description: OSI 7계층 모델에 대한 기초 이론
 image: 7layer.jpg
 date: 2022-08-21 12:19:00 +0900
 tags: OSI
-categories: [Network]
+categories: [network]
 ---
 ### **구성**
 {: .no_toc }

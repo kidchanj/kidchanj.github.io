@@ -5,7 +5,7 @@ description: POC Security 주관 25회 해킹캠프 참가 후기
 image: hacking_camp_logo.jpg
 date: 2022-08-30 17:23:00 +0900
 tags: HackingCamp POCsecurity
-categories: [HackingCamp]
+categories: [hackingcamp]
 ---
 ### **구성**
 {: .no_toc }
