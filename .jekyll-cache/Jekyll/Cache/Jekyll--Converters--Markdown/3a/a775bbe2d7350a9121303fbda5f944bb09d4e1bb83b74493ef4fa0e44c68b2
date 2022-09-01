@@ -1,0 +1,29 @@
+I"�<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#-명령어-제작-tool" id="markdown-toc--명령어-제작-tool">📎 <strong>명령어 제작 tool</strong></a></li>
+</ol>
+
+</details>
+<hr />
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<h1 id="-명령어-제작-tool">📎 <strong>명령어 제작 tool</strong></h1>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 보안에 대해 공부하다보면 개발능력이 어쩔수없이 요구되는것 같습니다😂 다행스러운건 개발에도 재미를 느낀다는점..?!ㅎㅎ 본론으로 돌아가서 이번에 소개 해드릴 주제는 최근 개발한 라우터, 스위치 설정 커맨드 제작기 입니다! 네트워크망 구축/설계에 대해 공부하다 보면 어쩔수 없이 반복적으로 입력하게 되는 명령어가 생기는데 이런 명령어에 대해 굉장히 <b>숙달되신분</b>과 아직 헷갈리는 부분이 많은 <b>입문자</b> 분들이 사용하면 좋지 않을까 싶어 개발을 연습할겸 제작 해 봤는데요! 단점은 python언어로 개발했기 때문에 python없이 독립적으로 동작하진 않습니다😅</h5>
+<br />
+
+**구성**
+<img src="/images/R_G/if_conf.jpg" width="63%" height="63%" />
+<div style="margin-left:5%;margin-right:5%;">
+<h5>GUI 구성은 위 사진과 같습니다! 아직 프로토타입에 가깝기 때문에 많은 기능은 구현하지 못했습니다😅 현재 버전에서 구현된 기능으론 인터페이스에 대한 설정 관련 입니다 :)</h5>
+</div></div>
+:ET
