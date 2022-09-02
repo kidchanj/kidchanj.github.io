@@ -1,0 +1,57 @@
+I"�<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#ctf" id="markdown-toc-ctf">🎪<strong>CTF</strong></a></li>
+  <li><a href="#hidden-flag" id="markdown-toc-hidden-flag"><strong>Hidden Flag</strong></a></li>
+</ol>
+
+</details>
+<hr />
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/Hidden_Flag/1.jpg" style="margin-left:10px;margin-right:10px;" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="ctf">🎪<strong>CTF</strong></h1>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 이번 Hacking Camp에서 Demon팀과 SISS팀에서 진행한 CTF중 Web분야 문제들을 write up 해두려 한다😉 <br />비공식 대회이긴 하지만 처음 참여하는 오프라인 CTF이기도 했고 그동안 내가 공부한 이론에 대한 검증이기도 했기에 은근 떨렸다...ㅎ.. 역시 이번 CTF를 통해 스스로 부족한점이 아직 많다는걸 느끼게 됐지만 공부 의욕이 불타올랐다...ㅋㅋ👺
+</h5></div>
+<p><br /><br /></p>
+
+<h1 id="hidden-flag"><strong>Hidden Flag</strong></h1>
+<p><img align="right" src="/images/HC_writeup/Hidden_Flag/2.jpg" width="38%" height="38%" /></p>
+<h5 style="margin-left:1%;margin-right:10%"> hidden flag...어딘가에 flag가 숨겨져 있다는 뜻일까..? 사이트에 정말 사진과 text만 덩그러니 있었다😐 우선 침착하게 소스코드 부터 살펴보기로 했다</h5>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;head&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"25th HCAMP"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:description"</span> <span class="na">content=</span><span class="s">"welcome to 25th hcamp"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:image"</span> <span class="na">content=</span><span class="s">"/static/images/view.png"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;title&gt;</span>Hidden Flag<span class="nt">&lt;/title&gt;</span>
+		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/jquery-3.6.0.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/ui/1.13.2/jquery-ui.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+	<span class="nt">&lt;/head&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;h2&gt;</span>Find my flag!<span class="nt">&lt;/h2&gt;</span>
+		<span class="nt">&lt;hr&gt;</span>
+		<span class="nt">&lt;p&gt;</span>It's still here!<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/static/images/icon.png"</span> <span class="na">width=</span><span class="s">"300px"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;footer&gt;</span>
+		<span class="nt">&lt;/footer&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>코드를 딱 봤을때 특별히 의심가는건 없었다..🤔 의문점은 head값중 meta라 적혀있는게 의심갔지만 일단은 패스... 하려다 실제 페이지에 표시된 이미지와 head에 포함된 meta tag중 <b>view.png</b>라는 이미지 파일의 경로가 같음을 발견..! 일단 directory listing을 시도해 보자.</h5>
+<img src="/images/HC_writeup/Hidden_Flag/3.jpg" style="margin-left:10px;margin-right:10px;border: 10 black" width="100%" height="100%" />
+</div>
+:ET
