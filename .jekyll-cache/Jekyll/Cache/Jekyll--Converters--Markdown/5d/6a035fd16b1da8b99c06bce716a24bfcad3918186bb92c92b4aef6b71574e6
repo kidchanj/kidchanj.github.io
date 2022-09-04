@@ -1,0 +1,28 @@
+I"�<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#secret-method" id="markdown-toc-secret-method">🤫<strong>Secret Method</strong></a></li>
+</ol>
+
+</details>
+<hr />
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/Secret_Method/1.jpg" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="secret-method">🤫<strong>Secret Method</strong></h1>
+<p><img align="right" src="/images/HC_writeup/Secret_Method/2.jpg" width="43%" height="43%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 이제 슬슬 이번 CTF 문제들이 감이 잡히는 것 같다😉 대체로 페이지 안에 &nbsp;힌트가 있고 힌트를 통해 접근 방법을 찾아 해결하는 느낌인것 같다. 이번 문제의 소스코드는 아래와 같다.
+</h5></div>
+:ET

@@ -1,0 +1,82 @@
+I"�<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#secret-method" id="markdown-toc-secret-method">🤫<strong>Secret Method</strong></a></li>
+  <li><a href="#딸기우유핑크" id="markdown-toc-딸기우유핑크">🍓<strong>딸기우유핑크..?</strong></a></li>
+  <li><a href="#options-method" id="markdown-toc-options-method"><strong>OPTIONS Method</strong></a></li>
+  <li><a href="#about-custom-method" id="markdown-toc-about-custom-method"><strong>About Custom Method</strong></a></li>
+</ol>
+
+</details>
+<hr />
+
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/Secret_Method/1.jpg" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="secret-method">🤫<strong>Secret Method</strong></h1>
+<p><img align="right" src="/images/HC_writeup/Secret_Method/2.jpg" width="43%" height="43%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 이제 슬슬 이번 CTF 문제들이 감이 잡히는 것 같다😉 대체로 &nbsp;페이지 안에 힌트가 있고 힌트를 통해 접근 방법을 찾아 해결하는 느낌인것 같다. 이번 문제의 소스코드는 아래와 같다.
+</h5></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;h2&gt;</span>Secret Method<span class="nt">&lt;/h2&gt;</span>
+		<span class="nt">&lt;hr&gt;</span>
+		<span class="nt">&lt;p&gt;</span>다양한 옵션 중 딸기우유를 핑꾸를 고르시오<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;iframe</span> <span class="na">width=</span><span class="s">"560"</span> <span class="na">height=</span><span class="s">"315"</span> <span class="na">src=</span><span class="s">"https://www.youtube-nocookie.com/embed/Crit1MyBk84?controls=0"</span> <span class="na">title=</span><span class="s">"YouTube video player"</span> <span class="na">frameborder=</span><span class="s">"0"</span> <span class="na">allow=</span><span class="s">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span> <span class="na">allowfullscreen</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<hr />
+
+<h1 id="딸기우유핑크">🍓<strong>딸기우유핑크..?</strong></h1>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 음...우선 소스코드상 숨겨진 단서를 찾진 못했다..<b>allow</b>항목들이 주어진 단서니 한번 검색해 보았다🤔
+</h5></div>
+<div>
+<img align="left" src="/images/HC_writeup/Secret_Method/3.jpg" width="30%" height="30%" style="border:2px solid black;" />
+<h5 align="center"> 서칭 결과 iframe tag는 youtube 동영상의 소스코드와 같았고 실제 페이지내 영상과 youtube영상의 소스코드가 같음을 확인할 수 있었다. 일단 Burp suite을 통해 패킷도 확인해보기로 했다😶
+</h5></div>
+
+<hr />
+
+<p><img align="center" src="/images/HC_writeup/Secret_Method/4.jpg" width="65%" height="65%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 패킷들도 요청과 응답이 오고갈뿐 크게 어색한 부분을 찾지 못했다🤔 하지만 역시 이번에도 힌트는 문제 안에 있었다! Secret <b>Method</b>와 페이지에 설명되있는 구절 '다양한 <b>옵션</b> 중 딸기우유를 핑꾸를 고르시오'<br />
+사실 이 힌트를 생각해 내는데 꽤나 시간이 걸렸다..😥
+</h5></div>
+
+<hr />
+
+<h1 id="options-method"><strong>OPTIONS Method</strong></h1>
+<p><img align="center" src="/images/HC_writeup/Secret_Method/5.jpg" width="85%" height="85%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> Web Server 구축시 config 파일을 통해 보안적 요소가 있는 설정값을 조정할 수 있는데 그중 하나가 바로 options 허용 여부이다. 사실 대부분의 web server는 이 options요청에 대해 허용하지 않겠지만 이번 문제는 바로 패킷헤더 중 OPTIONS Method에 대하여 알고있는지 묻는 문제였다!<br />
+정말 STRAWBERRYPINK(딸기핑크..?) 를 찾는거였다니...ㅋㅋㅋ 서버에서 Method 또한 custom할 수 있는건 이번에 알게 되었다🤯 아 물론 요청 Method를 바꾸는건 꼭 burp suite을 이용 할 필욘 없다.
+linux를 사용 중이라면 아래 명령을 통해 바로 options요청을 보낼 수 있다😉
+</h5></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X OPTIONS https://서버주소 -i
+</code></pre></div></div>
+<p><img align="center" src="/images/HC_writeup/Secret_Method/6.jpg" width="85%" height="85%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 고로 이번엔 Kali를 통해 curl 명령어를 사용해 서버에 <b>STRAWBERRYPINK</b> Method로 요청을 보내봤다:) response로 바로 flag가 넘어왔다...!!🤩</h5></div>
+
+<hr />
+
+<h1 id="about-custom-method"><strong>About Custom Method</strong></h1>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 솔직히 이번 문제를 해결하는데 시간이 걸렸던 가장 큰 이유는 Method의 종류 중 OPTIONS Method를 완전히 까먹고 있어서 인것 같다😥 Custom Method의 존재 자체도 몰랐기도 하고..😅 역시 공부를 하면 할수록 공부해야할게 더 늘어가는 것 같다..ㅋㅋㅋ<br />
+[More information about Custom Method](https://cloud.google.com/apis/design/custom_methods?hl=ko)
+</h5></div>
+:ET

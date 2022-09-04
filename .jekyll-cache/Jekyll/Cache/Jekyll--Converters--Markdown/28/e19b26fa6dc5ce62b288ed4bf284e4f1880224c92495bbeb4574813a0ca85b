@@ -1,0 +1,73 @@
+I"�<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#future-browser" id="markdown-toc-future-browser">🛸<strong>Future Browser</strong></a>    <ol>
+      <li><a href="#secret" id="markdown-toc-secret"><strong>/secret</strong></a></li>
+      <li><a href="#burp-suite" id="markdown-toc-burp-suite"><strong>Burp suite</strong></a></li>
+      <li><a href="#user-agent" id="markdown-toc-user-agent"><strong>User-Agent</strong></a></li>
+    </ol>
+  </li>
+</ol>
+
+</details>
+<hr />
+
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/Future_br/1.jpg" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="future-browser">🛸<strong>Future Browser</strong></h1>
+<p><img align="right" src="/images/HC_writeup/Future_br/2.jpg" style="border:2px solid black;" width="42%" height="42%" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>오호.. 이번엔 어떤 문제일까..우선 접속했을 때 보이는 페이지는 우측 이미지와 같았다. 거두절미 하고 바로 소스 코드 오픈!</h5></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;h2&gt;</span>Future Browser<span class="nt">&lt;/h2&gt;</span>
+		<span class="nt">&lt;hr&gt;</span>
+		<span class="nt">&lt;p&gt;</span>먼 미래에는 우리가 해킹캠프 브라우저를 사용하고 있을지도 모릅니다<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/static/images/rb.png"</span> <span class="na">width=</span><span class="s">"300px"</span><span class="nt">&gt;</span>
+		<span class="c">&lt;!-- &lt;a href="/secret"&gt;secret page&lt;/a&gt;--&gt;</span>
+		<span class="nt">&lt;script&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Welcome!</span><span class="dl">"</span><span class="p">);</span> <span class="nt">&lt;/script&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>소스코드를 오픈했을땐 엥?😶 싶었다 저 주석처리 부분은 뭐지..? 우선 <b>/secret</b> 경로에 뭔가 있는건 분명한데 왜이렇게 대놓고 주는거지..? 우선 바로 접속해보자!</h5></div>
+<p><br /></p>
+
+<hr />
+
+<h2 id="secret"><strong>/secret</strong></h2>
+<p><img align="left" src="/images/HC_writeup/Future_br/3.jpg" style="border:2px solid black;" width="42%" height="42%" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>'매우매우시크릿한 공간'이 접속됐다...ㅋㅋㅋㅋ 솔직히 처음엔 포돌이 그림이 나오고 하니 낚시페이지 인줄 알았다🤣<br />하지만 크게 다른 단서는 찾기 힘들었고 혹시나 하는 마음에 <b>burp suite</b>으로 패킷을 확인 하기로 했다🤨</h5></div>
+<p><br /><br /><br /><br /><br /><br /><br /></p>
+
+<hr />
+
+<h2 id="burp-suite"><strong>Burp suite</strong></h2>
+<p><img src="/images/HC_writeup/Future_br/4.jpg" style="border:2px solid black;" width="95%" height="95%" /><br /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 어색함을 찾지 못했다... 혹시몰라 이미지파일의 경로를 하나하나 다 요청해봤지만 404..그렇게 소스코드와 burp suite을 보며 고민하다 갑자기 떠오른 문제의 제목 'Future <b>Browser</b>'! 그리고 /secret 페이지에선 '보안상 hackingcamp <b>브라우저</b>를 통해서만 접근하실 수 있습니다' 라고 했다!😏
+</h5></div>
+
+<hr />
+
+<h2 id="user-agent"><strong>User-Agent</strong></h2>
+<p><img src="/images/HC_writeup/Future_br/5.jpg" style="border:2px solid black;" width="95%" height="95%" /><br /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> <b>Success</b>😎 대놓고 힌트를 주고 있었다니...!! 위 사진을 보면 알 수 있지만 browser engine에 대한 header인 User-Agent의 내용중 일부를 'hackingcamp'로 바꿔줬다!! 이후 response로 flag가 출력되는 모습을 볼수 있다..!!
+ 아무래도 이번 ctf는 공격 기법 보다는 웹 요청과 패킷에 대한 이해와 공부를 원하는것 같다 :)
+결론 적으로 flag값은 <b>HCAMP{5429B4BC36B7D193A28D3F2910BC51A3}</b>!
+</h5></div>
+:ET
