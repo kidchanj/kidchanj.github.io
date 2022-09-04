@@ -1,0 +1,29 @@
+I"l<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#quiz3" id="markdown-toc-quiz3">🎓<strong>Quiz3</strong></a></li>
+</ol>
+
+</details>
+<hr />
+
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/quiz3/1.jpg" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="quiz3">🎓<strong>Quiz3</strong></h1>
+<p><img align="right" src="/images/HC_writeup/quiz3/2.jpg" width="43%" height="43%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>사실 quiz3는 quiz1과 quiz2를 풀어야 나오는 CTF문제이다. 하지만 점점 페이지에 대한 filtering이 추가되며 난이도가 올라가는 형식이기 나는 quiz3만 다뤄보려 한다😉
+</h5></div>
+:ET

@@ -1,0 +1,167 @@
+I"�H<h3 class="no_toc" id="구성"><strong>구성</strong></h3>
+<details open="">
+  <summary class="text-delta">펼치기/접기</summary>
+
+<ol id="markdown-toc">
+  <li><a href="#quiz3" id="markdown-toc-quiz3">🎓<strong>Quiz3</strong></a></li>
+  <li><a href="#exploit" id="markdown-toc-exploit"><strong>Exploit</strong></a></li>
+</ol>
+
+</details>
+<hr />
+
+<head>
+<style>
+    h5 {
+        line-height : 165%; 
+    }
+</style>
+</head>
+
+<p><img src="/images/HC_writeup/quiz3/1.jpg" width="38%" height="38%" /></p>
+
+<hr />
+
+<h1 id="quiz3">🎓<strong>Quiz3</strong></h1>
+<p><img align="right" src="/images/HC_writeup/quiz3/2.jpg" width="43%" height="43%" style="border:2px solid black;" /></p>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>사실 quiz3는 quiz1과 quiz2를 풀어야 나오는 CTF문제이다. 하지만 점점 페이지에 대한 filtering이 추가되며 난이도가 올라가는 형식이기 나는 quiz3만 다뤄보려 한다😉
+우선 문제 페이지는 우측과 같다 간략하게 문제 설명을 하자면 페이지를 새로고침 할 때마다 세션을 부여받고 이는 문제정보, 정답, 현재 내 점수에 대한 정보를 담고 있다.
+페이지 소스를 확인해보면 이해될 테니 한번 확인해 보도록 하자😗
+</h5></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;h1&gt;</span>Quiz!<span class="nt">&lt;/h1&gt;</span>
+		<span class="nt">&lt;p&gt;</span>your score : 0<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;hr&gt;</span>
+		<span class="nt">&lt;h3&gt;</span>3534 * 5239 = ?<span class="nt">&lt;/h3&gt;</span>
+		<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"#"</span> <span class="na">method=</span><span class="s">"GET"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"score"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">name=</span><span class="s">"answer"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/form&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<div style="margin-left:5%;margin-right:5%;">
+<h5>추가적으로 이번 문제는 quiz1,2 와는 다르게 서버 자체의 소스코드도 문제 자료로 제공 되었는데 코드는 아래와 같다.</h5></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">session</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">server</span><span class="p">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s">"*****"</span>
+
+<span class="n">FLAG</span> <span class="o">=</span> <span class="s">"HCAMP{*****}"</span> 
+
+<span class="k">def</span> <span class="nf">check_flag_condition</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="n">check_number</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="n">check_number</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># bye bye :)
+</span>            <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="o">@</span><span class="n">server</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">server</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/quiz'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">quiz</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">session</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'score'</span><span class="p">)</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">session</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'answer'</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">user_answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'answer'</span><span class="p">))</span>
+            <span class="n">score</span>       <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'score'</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">user_answer</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">score</span>       <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s">'answer'</span><span class="p">])</span> <span class="o">==</span> <span class="n">user_answer</span><span class="p">:</span>
+            <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">score</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># bye bye :)
+</span>            <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">if</span> <span class="n">check_flag_condition</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">FLAG</span>
+
+    <span class="c1"># quiz!
+</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">session</span><span class="p">[</span><span class="s">'answer'</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'quiz.html'</span><span class="p">,</span>
+            <span class="n">total_score</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">],</span>
+            <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+        
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">server</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div style="margin-left:5%;margin-right:5%;">
+<h5>quiz 1,2 에서는 hidden타입인 input tag의 value값을 조정하여 score를 100점을 만들어 flag를 획득하는 문제였는데 이번 문제에선 위의 소스코드를 보면 알겠지만 <b>check_flag_condition</b>이라는 함수가 socore를 검열한다.. 해당 부분만 짧게 해석하자면 </h5></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">check_flag_condition</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="n">check_number</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="n">check_number</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># bye bye :)
+</span>            <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></div>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 우선 score가 100점이 넘어가면 True를 반환한다(목표!) 하지만! 50개의 문제를 풀고 51개째의 문제를 푸는 시점부터는 score값이 정수 형태이면 0으로 초기화 된다...😫 
+아마 여기까지 코드를 확인하면 이런 생각이 들거다 '그럼 소수점 3자리 이상의 값으로 값을 넘기거나 이전 문제와 마찬가지로 100이상의 value값을 넘겨주면 되는거 아닌가?' 
+</h5></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">quiz</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">session</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'score'</span><span class="p">)</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">session</span><span class="p">[</span><span class="s">'score'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">session</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'answer'</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">user_answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'answer'</span><span class="p">))</span>
+            <span class="n">score</span>       <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'score'</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">user_answer</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">score</span>       <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div style="margin-left:5%;margin-right:5%;">
+<h5>하지만 당연하게도 그 부분도 검열한다😂 <b>quiz</b>라는 함수에 의해 input tag의 value값을 100이상으로 조정해 request 요청을 하더라도 점수는 1점만 오른다.
+뿐만 아니라 1이하의 3자리 이상 유리수값을 설정하더라도 type을 float(실수)로 변환후 round()함수를 통해 소수점 첫째 자리까지만 을 score에 저장하도록 설계되어있다🤔
+그렇다면 이를 우회 할 방법은 없을까?
+</h5></div>
+
+<hr />
+
+<h1 id="exploit"><strong>Exploit</strong></h1>
+<div style="margin-left:5%;margin-right:5%;">
+<h5> 우선 이론상 위의 소스코드를 우회하여 소수점 3자리 이상의 값을 score로 설정할 수 있다면 50점을 넘긴 시점에도 0으로 초기화 되지않고 100점 이상에 도달해 flag를 획득할 수 있다.
+우선 내가 이 문제를 푼 방법은 다음과 같다.</h5></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">h3</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">= ?</span><span class="dl">'</span><span class="p">,</span> <span class="dl">''</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">)[</span><span class="mi">2</span><span class="p">].</span><span class="nx">click</span><span class="p">();</span>
+</code></pre></div></div>
+
+<div style="margin-left:5%;margin-right:5%;">
+<h5>솔직히 이 문제를 풀었다기 보다는 이것 저것 시도해보다 보니 얻어 걸린 느낌이 강하다..나는 javascript를 통해 문제를 계산하여 submit요청을 보내도록 console을 통해 요청했고 이때 hidden type의 input tag의 value 값을 0.7로 조정 했다. 근데 아니나 다를까 이를 반복해서 요청 했더니 round()함수가 정상적으로 작동하지 못하고 소수점 3자리 이상의 결과값을 반환했다. 해당 문제는 같은 팀원이 말하길 <b>부동소수점</b>에 대한 오류라고 말하긴 했으나.. 나는 전혀 알지 못했다😨</h5></div>
+:ET
